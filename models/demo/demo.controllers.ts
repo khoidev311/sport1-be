@@ -1,7 +1,6 @@
 const Joi = require("@hapi/joi");
 
 const service = require("./demo.services");
-const populateResponse = require("../../utils/populate_response");
 
 // viết file riêng nên phải import
 import type { demoDataGetList } from "../../types/demoType";
@@ -35,7 +34,7 @@ exports.getList = async (req: Request, res: Response, next: NextFunction) => {
     // xử lý xong phần data cần truy vấn với service
     const list = await service.getList(data);
 
-    next(populateResponse.success(list));
+    next(list);
   } catch (e) {
     next(e);
   }

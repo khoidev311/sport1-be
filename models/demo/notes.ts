@@ -17,8 +17,6 @@ interface BCong extends BBB {
   isBCong: boolean;
 }
 
-const _a: ACong = {};
-const _b: BCong = {};
 
 // class types
 class Car {
