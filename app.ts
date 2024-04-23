@@ -1,12 +1,11 @@
 import express from 'express';
 import userRoute from "./routes/userRoute"
-import mongoose from 'mongoose';
-
+import demo from "./models/demo/demo.routes"
+import { connectToMongoDB } from "./database/mongodbConnector";
 
 const app = express();
 const port = 3000;
 app.use(express.json());
-
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -14,13 +13,18 @@ app.get('/', (req, res) => {
 
 //users
 app.use("/api/users", userRoute);
+//demo
+app.use("/api/users", demo);
 
-
-mongoose.connect("mongodb+srv://khoidev311:8heCdSJRCFliwvfk@server1.a2yvgjo.mongodb.net/").then(()=> {
-  console.log("Connected to database!");
-  app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
+// Kết nối đến MongoDB và khởi động server
+connectToMongoDB()
+  .then((db) => {
+    console.log("Connected to database!");
+    app.listen(port, () => {
+      console.log(`Express is listening at http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    process.exit(1); // Kết thúc ứng dụng nếu không thể kết nối đến MongoDB
   });
-}).catch((err)=> {
-  console.log(err.stack);
-})
