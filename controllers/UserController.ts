@@ -1,8 +1,9 @@
+
 import UserModel from "../models/userModel";
 
 const getUsers = async (req, res) => {
   try {
-    const users = await UserModel.find({});
+    const users = await UserModel.find({}).populate({path:"role",model:"Role"});
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -20,12 +21,12 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  try {
-    const user = await UserModel.create(req.body);
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+    try {
+      const user = await UserModel.create(req.body);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
 };
 
 const updateUser = async (req, res) => {
