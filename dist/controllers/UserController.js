@@ -15,11 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.updateUser = exports.createUser = exports.getUserById = exports.getUsers = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const users = yield userModel_1.default.find({
-            username: `/${(_a = req.query) === null || _a === void 0 ? void 0 : _a.username}/`,
-        }).populate({ path: "role", model: "Role" });
+        const users = yield userModel_1.default.find({}).populate({ path: "role", model: "Role" });
         res.status(200).json(users);
     }
     catch (error) {
