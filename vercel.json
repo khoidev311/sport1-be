@@ -2,8 +2,12 @@
     "version": 2,
     "builds": [
         {
+            "src": "package.json",
+            "use": "vercel-sapper"
+        },
+        {
             "src": "app.ts",
-            "use": "@now/node"
+            "use": "@vercel/node"
         }
     ],
     "routes": [
