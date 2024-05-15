@@ -15,7 +15,7 @@ const scoreRoute_1 = __importDefault(require("./routes/scoreRoute"));
 // import { authToken } from './middleware/authToken';
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
