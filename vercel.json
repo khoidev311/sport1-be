@@ -16,5 +16,5 @@
             "dest": "app.ts"
         }
     ],
-    "installCommand": "yarn install"
+    "installCommand": "npm install --legacy-peer-deps true"
 }
