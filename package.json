@@ -4,7 +4,6 @@
   "private": true,
   "main": "app.ts",
   "scripts": {
-    "build": "next build",
     "start": "tsc && nodemon app.ts",
     "lint": "eslint . --ext .ts"
   },
