@@ -13,10 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.updateUser = exports.createUser = exports.getUserById = exports.getUsers = void 0;
+const commonHelper_1 = require("../helper/commonHelper");
 const userModel_1 = __importDefault(require("../models/userModel"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield userModel_1.default.find({}).populate({ path: "role", model: "Role" });
+        const { filter, sort } = (0, commonHelper_1.queryBuilder)(req);
+        const users = yield userModel_1.default.find(Object.assign({}, filter)).sort(sort).populate({ path: "role", model: "Role" });
         res.status(200).json(users);
     }
     catch (error) {

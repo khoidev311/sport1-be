@@ -1,9 +1,10 @@
-
+import { queryBuilder } from "../helper/commonHelper";
 import UserModel from "../models/userModel";
 
 const getUsers = async (req, res) => {
   try {
-    const users = await UserModel.find({}).populate({path:"role",model:"Role"});
+    const { filter , sort } = queryBuilder(req);
+    const users = await UserModel.find({...filter}).sort(sort).populate({path:"role",model:"Role"});
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });

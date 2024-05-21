@@ -1,5 +1,4 @@
 import  jwt  from 'jsonwebtoken';
-import isNull from "lodash"
 
 const authToken = async (req, res, next) => {
     const checkToken = req.headers["authorization"];
