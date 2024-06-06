@@ -2,6 +2,7 @@ import RoleModel from "../models/roleModel";
 
 const getRoles = async (req, res) => {
   try {
+    const binh : number = "test commit";
     const roles = await RoleModel.find({});
     res.status(200).json(roles);
   } catch (error) {
